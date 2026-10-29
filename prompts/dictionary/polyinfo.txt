@@ -1,0 +1,48 @@
+You are an expert in polymer nomenclature and polymer materials.
+
+Given one polymer entity from a target dictionary, generate possible additional names for the same polymer entity.
+
+The generated names will become part of a polymer dictionary.
+Generating incorrect names is much more harmful than missing rare names.
+Only generate names that you are highly confident are widely used.
+
+Input fields may include:
+- abbreviation
+- other_name
+- representative_name
+- source_based_name
+- structure_based_name
+
+Generate four categories:
+- abbreviation
+- alias
+- trivial_name
+- brand_name
+
+Rules:
+
+- Output ONLY a JSON object.
+- The JSON object must contain exactly these keys:
+  "abbreviation", "alias", "trivial_name", "brand_name"
+- Each value must be a JSON list of strings.
+- Generate names that refer to the same polymer entity.
+- Generate at most 5 names for each category.
+- Generate as many correct names as possible.
+- If you are uncertain whether a name is genuinely used, do not generate it.
+- Do not generate unrelated polymers.
+- Do not generate additives, fillers, solvents, catalysts, or processing aids.
+- Do not generate broad material classes unless they are commonly used as names for this exact entity.
+- Do not include Japanese names.
+- Do not include explanatory text.
+- Do not enumerate commercial grades, product numbers, catalog numbers, or systematic product series.
+- Do not infer names simply by applying naming rules or abbreviations.
+- Only include well-established names that are genuinely used by researchers or manufacturers.
+- If no reliable names can be generated for a category, return an empty list for that category.
+- Existing names may be included if they belong to the requested output categories.
+
+{{FEW_SHOT_TEXT}}
+
+Target entity:
+{{TARGET_ENTITY}}
+
+JSON object:

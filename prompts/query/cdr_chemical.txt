@@ -1,0 +1,34 @@
+You are an expert in chemical nomenclature and biomedical terminology.
+
+Given a chemical-related mention, generate possible canonical chemical names that the mention may refer to.
+
+The mention may be:
+
+- a systematic, semi-systematic, IUPAC-style, or CAS-style name
+- a common or trivial chemical name, or a generic/nonproprietary drug name
+- an abbreviation or acronym
+- a laboratory or development code
+- a trade name, brand name, or commercial product name
+- a partially specified or descriptive mention
+
+Your goal is to recover the underlying chemical identity.
+
+Rules:
+
+- Output ONLY a JSON list of strings.
+- Do not output explanations.
+- Generate canonical chemical names, formal MeSH-style names, and widely used expanded forms that refer to the same chemical concept.
+- If the mention is a trade name, brand name, or commercial product name, return the underlying chemical substance(s) it is commonly associated with.
+- Include multiple candidates when the mention is ambiguous between distinct chemical concepts.
+- Do not generate broader chemical classes, narrower compounds, metabolites, precursors, degradation products, analogues, or derivatives.
+- Do not generate salts, hydrates, solvates, ions, stereoisomers, or mixtures unless they are commonly treated as the same substance.
+- Do not generate molecular formulas, SMILES strings, InChI strings, CAS Registry Numbers, or catalog/product numbers.
+- Do not generate diseases, genes, proteins, organisms, or biological processes.
+- Do not generate unrelated chemicals.
+- If the input already appears to be a formal chemical name, include it unchanged.
+- If the mention cannot reasonably be linked to a chemical, return an empty list.
+
+Mention:
+{{QUERY}}
+
+JSON list:

@@ -1,0 +1,69 @@
+You are an expert in disease nomenclature and biomedical terminology.
+
+Given one disease entity from a target dictionary, generate possible additional names for the same disease entity.
+
+The generated names will become part of a disease dictionary for disease entity linking.
+Generating incorrect names is much more harmful than missing rare names.
+Only generate names that you are highly confident are genuinely used.
+
+Input fields may include:
+- concept_id
+- equivalent_ids
+- preferred_label
+- labels
+- label_records
+- definition
+- parent_ids
+- tree_numbers
+- parent_tree_numbers
+- slim_mappings
+
+Generate four categories:
+- abbreviation
+- alias
+- eponym
+- common_name
+
+Definitions:
+
+- abbreviation:
+  Abbreviations or acronyms commonly used to refer to the disease.
+
+- alias:
+  Alternative formal disease names, descriptive names, synonyms, historical names, or other well-established names referring to the same disease concept.
+
+- eponym:
+  Disease names based on people's names.
+
+- common_name:
+  Widely used non-technical or lay names for the disease.
+
+Rules:
+
+- Output ONLY a JSON object.
+- The JSON object must contain exactly these keys:
+  "abbreviation", "alias", "eponym", "common_name"
+- Each value must be a JSON list of strings.
+- Generate names that refer to the same MEDIC disease concept.
+- Generate at most 5 names for each category.
+- Generate as many correct names as possible.
+- Existing labels are already part of the dictionary. Prefer additional names that are not already listed.
+- Existing names may still be included if they clearly belong to one of the requested output categories.
+- If you are uncertain whether a name is genuinely used, do not generate it.
+- Do not generate broader disease classes or narrower disease subtypes.
+- Do not generate symptoms, complications, manifestations, causes, risk factors, associated conditions, or treatments.
+- Do not generate genes, proteins, chemicals, drugs, organisms, pathogens, anatomical structures, or biological processes.
+- Do not infer names simply by applying naming rules or mechanically rearranging words.
+- Only include well-established names genuinely used in MEDIC, MeSH, OMIM, or biomedical literature for the same disease concept.
+- Every generated name must be unique across all four categories.
+- Prefer diverse names over minor lexical variations.
+- Do not generate trivial spelling, capitalization, punctuation, singular-plural, possessive, or word-order variants.
+- Do not include explanatory text.
+- If no reliable names can be generated for a category, return an empty list for that category.
+
+{{FEW_SHOT_TEXT}}
+
+Target entity:
+{{TARGET_ENTITY}}
+
+JSON object:

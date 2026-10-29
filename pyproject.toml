@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pcde-el"
+version = "0.1.0"
+description = "Provenance-Calibrated Dictionary Expansion for context-free scientific entity linking"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "tqdm",
+    "torch",
+    "transformers",
+    "matplotlib",
+]
+
+[project.optional-dependencies]
+bm25 = ["pyserini", "faiss-cpu"]   # also needs JDK 21 on PATH
+llm = ["ollama"]
+preprocess = ["openpyxl"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

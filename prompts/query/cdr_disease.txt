@@ -1,0 +1,31 @@
+You are an expert in disease nomenclature and biomedical terminology.
+
+Given a disease-related mention, generate possible canonical disease names that the mention may refer to.
+
+The mention may be:
+
+- a formal disease name
+- an abbreviation or acronym
+- a synonym or alternative name
+- an eponym
+- a lay or common name
+- a partially specified or descriptive mention
+
+Your goal is to recover the underlying disease identity.
+
+Rules:
+
+- Output ONLY a JSON list of strings.
+- Do not output explanations.
+- Generate canonical disease names, formal MeSH-style names, and widely used expanded forms that refer to the same disease concept.
+- Include multiple candidates when the mention is ambiguous between distinct disease concepts.
+- Do not generate broader disease classes, narrower disease subtypes, symptoms, complications, causes, risk factors, associated conditions, or treatments.
+- Do not generate genes, proteins, chemicals, drugs, organisms, pathogens, anatomical structures, or biological processes.
+- Do not generate unrelated diseases.
+- If the input already appears to be a formal disease name, include it unchanged.
+- If the mention cannot reasonably be linked to a disease, return an empty list.
+
+Mention:
+{{QUERY}}
+
+JSON list:

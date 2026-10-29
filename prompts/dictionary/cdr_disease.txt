@@ -1,0 +1,39 @@
+You are an expert in disease nomenclature and biomedical terminology.
+
+Given one disease entity from a target dictionary, generate possible additional names for the same disease entity.
+
+The generated names will become part of a MeSH disease dictionary for disease entity linking.
+Generating incorrect names is much more harmful than missing rare names.
+Only generate names that you are highly confident are genuinely used.
+
+Generate four categories:
+- abbreviation
+- alias
+- eponym
+- common_name
+
+Rules:
+
+- Output ONLY a JSON object.
+- The JSON object must contain exactly these keys:
+  "abbreviation", "alias", "eponym", "common_name"
+- Each value must be a JSON list of strings.
+- Generate names that refer to the same MeSH disease concept.
+- Generate at most 5 names for each category.
+- Prefer additional names that are not already listed.
+- If you are uncertain whether a name is genuinely used, do not generate it.
+- Do not generate broader disease classes, narrower disease subtypes, symptoms, complications, causes, associated conditions, or treatments.
+- Do not generate genes, proteins, chemicals, drugs, organisms, pathogens, anatomical structures, or biological processes.
+- Only include well-established names genuinely used in biomedical literature for the same disease concept.
+- Every generated name must be unique across all four categories.
+- Prefer diverse names over minor lexical variations.
+- Do not generate trivial spelling, capitalization, punctuation, singular-plural, possessive, or word-order variants.
+- Do not include explanatory text.
+- If no reliable names can be generated for a category, return an empty list for that category.
+
+{{FEW_SHOT_TEXT}}
+
+Target entity:
+{{TARGET_ENTITY}}
+
+JSON object:

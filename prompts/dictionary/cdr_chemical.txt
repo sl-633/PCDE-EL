@@ -1,0 +1,66 @@
+You are an expert in chemical nomenclature and biomedical terminology.
+
+Given one chemical entity from a target dictionary, generate possible additional names for the same chemical entity.
+
+The generated names will become part of a MeSH chemical dictionary for chemical entity linking.
+
+Generating incorrect names is much more harmful than missing rare names.
+Only generate names that you are highly confident are genuinely used for the same chemical concept.
+
+Generate five categories:
+
+- systematic_name
+- common_name
+- abbreviation
+- code_name
+- trade_name
+
+Definitions:
+
+- systematic_name:
+  Systematic, semi-systematic, IUPAC-style, CAS-style, or other formal chemical names that refer to the same chemical concept.
+
+- common_name:
+  Common chemical names, trivial names, generic or nonproprietary drug names, and other widely used scientific names that refer to the same chemical concept.
+
+- abbreviation:
+  Established abbreviations, acronyms, or shortened forms commonly used to refer to the chemical.
+
+- code_name:
+  Established laboratory codes, development codes, investigational compound identifiers, or research compound names that genuinely refer to the chemical.
+
+- trade_name:
+  Established proprietary or commercial names that clearly refer to the same single chemical substance or active ingredient.
+
+Rules:
+
+- Output ONLY a JSON object.
+- The JSON object must contain exactly these keys: "systematic_name", "common_name", "abbreviation", "code_name", "trade_name"
+- Each value must be a JSON list of strings.
+- Generate names that refer to the same MeSH chemical concept.
+- Generate at most 5 names for each category.
+- Prefer additional names that are not already listed in the input.
+- If you are uncertain whether a name is genuinely used, do not generate it.
+- Every generated name must be unique across all five categories.
+- Do not place the same name in more than one category.
+- Prefer diverse, genuinely distinct names over minor lexical variants.
+- Do not generate trivial spelling, capitalization, punctuation, hyphenation, singular-plural, or word-order variants.
+- Do not infer or invent names merely by applying chemical naming rules, abbreviation patterns, or code-name patterns.
+- Do not generate broader chemical classes, narrower compounds, metabolites, precursors, degradation products, analogues, derivatives, or related drugs unless they are represented by the same MeSH concept.
+- Do not generate salts, hydrates, solvates, ions, stereoisomers, isotopically labelled forms, or mixtures unless they are represented by the same MeSH concept.
+- Do not generate molecular formulas, SMILES strings, InChI strings, CAS Registry Numbers, database identifiers, catalog numbers, product numbers, or supplier-specific identifiers.
+- For code_name, include only well-established codes that are documented as names for the same compound. Never invent a code name.
+- For trade_name, include only well-established names that clearly refer to the same single active ingredient or chemical substance.
+- Do not generate combination-product names, formulation names, dosage forms, strengths, manufacturer names, product lines, or commercial products that merely contain the chemical.
+- Do not treat a reagent kit, mixture, material, or product containing the chemical as a synonym of the chemical itself.
+- Do not generate diseases, genes, proteins, peptides, enzymes, organisms, pathogens, cells, anatomical structures, or biological processes.
+- Only include names genuinely used in biomedical, pharmaceutical, or chemical literature for the same chemical concept.
+- If no reliable names can be generated for a category, return an empty list for that category.
+- Do not include explanatory text.
+
+{{FEW_SHOT_TEXT}}
+
+Target entity:
+{{TARGET_ENTITY}}
+
+JSON object:

@@ -1,0 +1,34 @@
+You are an expert in polymer nomenclature and polymer materials.
+
+Given a polymer-related mention, generate possible canonical polymer names that the mention may refer to.
+
+The mention may be:
+
+- a formal polymer name
+- an abbreviation or acronym
+- a synonym
+- a trade name or brand name
+- a commercial product name or grade
+- an informal material name
+- a copolymer shorthand
+- a partially specified polymer description
+
+Your goal is to recover the underlying polymer identity.
+
+Rules:
+
+- Output ONLY a JSON list of strings.
+- Do not output explanations.
+- Generate canonical polymer names, formal polymer names, and widely used expanded forms.
+- If the mention is a trade name, brand name, commercial grade, or product name, return the underlying polymer(s) it is commonly associated with.
+- Include multiple candidates when the mention is ambiguous.
+- Prefer chemically meaningful polymer names over product names.
+- Do not generate unrelated polymers.
+- Do not generate additives, fillers, solvents, catalysts, or processing aids unless they are part of the polymer identity.
+- If the input already appears to be a formal polymer name, include it unchanged.
+- If the mention cannot reasonably be linked to a polymer, return an empty list.
+
+Mention:
+{{QUERY}}
+
+JSON list:
